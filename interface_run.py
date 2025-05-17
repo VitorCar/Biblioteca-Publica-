@@ -1,5 +1,6 @@
 from logica_sistema import *
 from telas_secundarias import *
+from export_excel import exportar_emprestimos
 import customtkinter as ctk
 import customtkinter
 
@@ -165,7 +166,7 @@ adicionar_emprestimo.grid(row=0, column=0, padx=5, pady=5)
 visualizar_emprestimo = customtkinter.CTkButton(frame_botao_emprestimo, text='Visualizar', font=('Ariel', 14, 'bold'), command=tela_visualizacao_remover_emprestimo)
 visualizar_emprestimo.grid(row=0, column=1, padx=5, pady=5)
 
-exporta = customtkinter.CTkButton(janela, text='Exportar Excel', font=('Ariel', 14, 'bold'))
+exporta = customtkinter.CTkButton(janela, text='Exportar Excel', font=('Ariel', 14, 'bold'), command=lambda : exportar_emprestimos(master=janela))
 exporta.pack()
 
 janela.mainloop()
