@@ -1,4 +1,5 @@
 from logica_sistema import *
+from export_excel import *
 import customtkinter
 background_color = "#1a1a1a"
 
@@ -47,7 +48,7 @@ def tela_visualizacao_remover():
     caixa_texto2 = customtkinter.CTkTextbox(frame_visualizacao, width=600, height=150)
     caixa_texto2.pack(pady=(20, 10))
 
-    exporta = customtkinter.CTkButton(frame_visualizacao, text='Exportar Excel', font=('Ariel', 14, 'bold'))
+    exporta = customtkinter.CTkButton(frame_visualizacao, text='Exportar Excel', font=('Ariel', 14, 'bold'), command=lambda : export_livro(master=frame_visualizacao))
     exporta.pack(pady=20)
 
     ##REMOVER-----------------------
@@ -119,7 +120,8 @@ def tela_vizualizacao_remover_alunos():
     caixa_texto2_alunos = customtkinter.CTkTextbox(frame_visualizacao, width=600, height=150)
     caixa_texto2_alunos.pack(pady=(20, 10))
 
-    exporta_alunos = customtkinter.CTkButton(frame_visualizacao, text='Exportar Excel', font=('Ariel', 14, 'bold'))
+    exporta_alunos = customtkinter.CTkButton(frame_visualizacao, text='Exportar Excel', font=('Ariel', 14, 'bold'), command=lambda :
+                                             export_aluno(master=frame_visualizacao))
     exporta_alunos.pack(pady=20)
 
     # Frame para o sistema de remoção de alunos
