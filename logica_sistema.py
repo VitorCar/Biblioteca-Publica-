@@ -118,6 +118,29 @@ def remover_livro(id_livro, nome_remove_livro, master):
         nome_remove_livro.delete(0, 'end')
 
 
+def obter_estatisticas_livros():
+    try:
+        total_cadastrados = 0
+        soma_total = 0
+
+        # Obter a contagem de livros cadastrados
+        livros_resultado = executar_consulta('SELECT COUNT(*) AS total_cadastrados FROM livros')
+        if livros_resultado and livros_resultado[0]:
+            total_cadastrados = livros_resultado[0]['total_cadastrados']
+
+        # Obter a soma total de livros
+        total_resultado = executar_consulta('SELECT SUM(quantidade_total) AS total FROM livros')
+        if total_resultado and total_resultado[0] and total_resultado[0]['total'] is not None:
+            soma_total = total_resultado[0]['total']
+
+        mensagem = f'Foram cadastrados: {total_cadastrados} Livros.\n'
+        mensagem += f'O total de livros é: {soma_total}'
+        return mensagem
+
+    except Error as erro:
+        return f'ERRO ao obter estatísticas: {erro}'
+
+
 #-------------------------------- ALUNOS --------------------------------------------
 
 def adicionar_aluno(nome, matricula, email, celular, master=None):
@@ -225,6 +248,20 @@ def validar_celular(c, celular):
     if num != novo_num or not novo_num.isdigit():
         celular.delete(0, ctk.END)
         celular.insert(0, novo_num)
+
+
+def quantidade_alunos_cadastrados(caixa_estat_alunos):
+    caixa_estat_alunos.delete('1.0', 'end')
+    try:
+        alunos_resultado = executar_consulta('SELECT COUNT(*) AS total_alunos FROM alunos')
+        if alunos_resultado and alunos_resultado[0]:
+            total_alunos = alunos_resultado[0]['total_alunos']
+            txt = f'Foram cadastrados: {total_alunos} Alunos.'
+            caixa_estat_alunos.insert('end', txt)
+        else:
+            caixa_estat_alunos.insert('end', 'Nenhum aluno cadastrado.')
+    except Error as erro:
+        caixa_estat_alunos.insert('end', f'ERRO ao contar alunos cadastrados!: {erro}')
 
 
 #---------------- EMPRESTIMO ----------------
@@ -425,6 +462,33 @@ def remover_emprestimo(id_emprestimo, nome_remove_emprestimo, master):
         mostrar_mensagem('Erro ao remover empréstimo!.', 'orange', master)
         id_emprestimo.delete(0, 'end')
         nome_remove_emprestimo.delete(0, 'end')
+
+
+def obter_estatisticas_emprestimo(caixa_texto2_emprestimo):
+    caixa_texto2_emprestimo.delete('1.0', 'end')
+    try:
+        # Contar o número total de empréstimos
+        cursor = executar_consulta('SELECT COUNT(*) AS total_emprestimos FROM emprestimo')
+        total_emprestimos = cursor[0]['total_emprestimos'] if cursor and cursor[0] else 0
+
+        # Contar o número de empréstimos não devolvidos (data_devolucao_real IS NULL)
+        cursor_nao_devolvidos = executar_consulta('SELECT COUNT(*) AS nao_devolvidos FROM emprestimo WHERE data_devolucao_real IS NULL')
+        nao_devolvidos = cursor_nao_devolvidos[0]['nao_devolvidos'] if cursor_nao_devolvidos and cursor_nao_devolvidos[0] else 0
+
+        em_atraso_ou_aberto = nao_devolvidos
+
+        # Inserir as estatísticas com formatação
+        caixa_texto2_emprestimo.insert('end', f'TOTAL DE EMPRÉSTIMOS: ', ('total_label', 'bold'))
+        caixa_texto2_emprestimo.insert('end', f'{total_emprestimos}\n', ('total_value', 'white'))
+
+        caixa_texto2_emprestimo.insert('end', f'NÃO DEVOLVIDOS: ', 'bold')
+        caixa_texto2_emprestimo.insert('end', f'{nao_devolvidos}\n')
+
+        caixa_texto2_emprestimo.insert('end', f'EM ATRASO OU EM ABERTO: ', 'bold')
+        caixa_texto2_emprestimo.insert('end', f'{em_atraso_ou_aberto}\n')
+
+    except Error as erro:
+        caixa_texto2_emprestimo.insert('end', f'ERRO ao obter estatísticas de empréstimo: {erro}')
 
 
 #DATA EM TEMPO REAL
