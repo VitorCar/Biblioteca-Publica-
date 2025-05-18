@@ -278,7 +278,6 @@ def tela_visualizacao_remover_emprestimo():
     botao_remover_aluno.grid(row=8, column=0, columnspan=2, pady=10)
 
 
-
 def tela_estatistica():
     customtkinter.set_appearance_mode('dark')
     customtkinter.set_default_color_theme('dark-blue')
@@ -302,7 +301,4 @@ def tela_estatistica():
         janela_4_emprestimo.after(500, busca_automatica_visualizar_emp)
 
     busca_automatica_visualizar_emp()
-
-
-
 
