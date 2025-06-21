@@ -19,7 +19,7 @@ Este é um sistema completo de gerenciamento de biblioteca desenvolvido em **Pyt
 - **CustomTkinter** (interface gráfica moderna)
 - **SMTP (smtplib)** para envio de e-mails
 - **dotenv** para gerenciamento seguro de variáveis como senha de e-mail
-- **Exportar para excel**
+- **Pandas & os** Exportar para excel
 ## 🔒 Segurança
 
 - As credenciais sensíveis (como e-mail e senha) são armazenadas em um arquivo `.env` e não devem ser expostas no repositório.
