@@ -1,7 +1,11 @@
-from logica_sistema import *
-from telas_secundarias import *
-from export_excel import exportar_emprestimos
-import customtkinter as ctk
+from logica_sistema.logica_sistema import *
+import logica_sistema.livros
+import logica_sistema.alunos
+import logica_sistema.emprestimos
+from telas_secundarias.tela_secundaria_livro import *
+from telas_secundarias.tela_secundaria_alunos import *
+from telas_secundarias.tela_secundaria_emprestimos import *
+from excel.export_excel import exportar_emprestimos
 import customtkinter
 
 customtkinter.set_appearance_mode('dark')
@@ -69,7 +73,7 @@ frame_botao = customtkinter.CTkFrame(janela, fg_color=background_color)
 frame_botao.pack(pady=20)
 
 adicionar_livro = customtkinter.CTkButton(frame_botao, text='Adicionar', font=('Ariel', 14, 'bold')
-, command=lambda: adicionar_valores_livros(entrada_titulo, entrada_autor, entrada_editora, ano_publicacao, qtd_total, qtd_disponivel, master=janela))
+                                          , command=lambda: logica_sistema.livros.adicionar_valores_livros(entrada_titulo, entrada_autor, entrada_editora, ano_publicacao, qtd_total, qtd_disponivel, master=janela))
 adicionar_livro.grid(row=0, column=0, padx=5, pady=5)
 
 visualizar_livros = customtkinter.CTkButton(frame_botao, text='Visualizar', font=('Ariel', 14, 'bold'), command=tela_visualizacao_remover)
