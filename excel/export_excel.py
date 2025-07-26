@@ -1,10 +1,12 @@
 import pandas as pd
-from datetime import datetime
+from datetime import date
 from database_connector import *
-from logica_sistema import *
 import os
 import subprocess
-data_atual = datetime.datetime.now().strftime("%Y-%m-%d")
+
+from logica_sistema.logica_sistema import mostrar_mensagem
+
+data_atual = date.today()
 
 
 def export_livro(master):
