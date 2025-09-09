@@ -1,8 +1,8 @@
-# 📚 Sistema de Gerenciamento de Biblioteca Pública
+# Sistema de Gerenciamento de Biblioteca Pública
 
 Este é um sistema completo de gerenciamento de biblioteca desenvolvido em **Python**, com interface gráfica em **CustomTkinter** e banco de dados **MySQL**. Ele permite gerenciar alunos, livros, registrar e devolver empréstimos, além de enviar e-mails automáticos em caso de devoluções atrasadas.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Cadastro de alunos com nome, matrícula, e-mail e telefone
 - Cadastro de livros com controle de quantidade disponível
@@ -12,7 +12,7 @@ Este é um sistema completo de gerenciamento de biblioteca desenvolvido em **Pyt
 - Pesquisa de empréstimos por nome do aluno
 - Interface gráfica moderna e responsiva com CustomTkinter
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Python 3**
 - **MySQL** (banco de dados relacional)
@@ -20,7 +20,7 @@ Este é um sistema completo de gerenciamento de biblioteca desenvolvido em **Pyt
 - **SMTP (smtplib)** para envio de e-mails
 - **dotenv** para gerenciamento seguro de variáveis como senha de e-mail
 - **Pandas & os** Exportar para excel
-## 🔒 Segurança
+##  Segurança
 
 - As credenciais sensíveis (como e-mail e senha) são armazenadas em um arquivo `.env` e não devem ser expostas no repositório.
 
